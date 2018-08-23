@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub/test" xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <include href="../core/core.rng"/>
+
+    <define name="libero.tests.root">
+        <element name="root">
+            <ref name="libero.tests.root.attributes"/>
+            <ref name="libero.tests.root.content"/>
+        </element>
+    </define>
+
+    <define name="libero.tests.root.attributes">
+        <empty/>
+    </define>
+
+    <define name="libero.tests.root.content">
+        <empty/>
+    </define>
+
+</grammar>

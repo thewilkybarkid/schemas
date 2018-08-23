@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schema.rng"?>
+<?expected-error line="6" message="Type language doesn't allow value '1'"?>
+<?expected-error line="6" message="Element root failed to validate attributes"?>
+
+<test:root xmlns:test="http://libero.pub/test" xml:lang="1"/>

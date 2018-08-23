@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub/test" xmlns="http://relaxng.org/ns/structure/1.0">
+
+    <include href="../../../test-case.rng"/>
+
+    <start>
+        <ref name="libero.tests.root"/>
+    </start>
+
+    <define name="libero.tests.root.attributes" combine="interleave">
+        <ref name="libero.core.attributes.lang"/>
+    </define>
+
+</grammar>

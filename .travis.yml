@@ -1,0 +1,24 @@
+sudo: false
+
+language: php
+
+php:
+    - 7.2
+
+branches:
+    only:
+        - master
+
+cache:
+    directories:
+        - $HOME/.composer/cache/files
+
+before_install:
+    - phpenv config-rm xdebug.ini
+
+install:
+    - travis_retry composer install --classmap-authoritative --no-suggest --prefer-dist
+
+script:
+    - vendor/bin/phpunit
+    - vendor/bin/phpcs
