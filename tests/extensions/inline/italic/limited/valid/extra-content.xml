@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../extra-content.rng"?>
+
+<italic xmlns="http://libero.pub" xmlns:test="http://libero.pub/test">
+    foo <test:content>bar</test:content> baz
+</italic>

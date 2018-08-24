@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub/test" xmlns="http://relaxng.org/ns/structure/1.0">
+
+    <include href="../../../../test-case.rng"/>
+
+    <include href="../../../../../extensions/inline/italic.rng">
+
+        <define name="libero.italic.limited.attributes">
+
+            <attribute name="key" ns="http://libero.pub/test">
+                <text/>
+            </attribute>
+
+        </define>
+
+    </include>
+
+    <start>
+        <ref name="libero.italic.limited"/>
+    </start>
+
+</grammar>

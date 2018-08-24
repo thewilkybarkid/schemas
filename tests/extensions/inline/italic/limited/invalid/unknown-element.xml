@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng"?>
+<?expected-error line="5" message="Element italic has extra content: text"?>
+
+<italic xmlns="http://libero.pub" xmlns:test="http://libero.pub/test">
+    foo <test:inline>bar</test:inline>
+</italic>

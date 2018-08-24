@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../custom-attribute.rng"?>
+
+<italic xmlns="http://libero.pub" xmlns:test="http://libero.pub/test" test:key="value">
+    foo <italic test:key="value">bar</italic>
+</italic>

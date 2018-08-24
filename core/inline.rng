@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="libero.inline.full">
+
+        <oneOrMore>
+            <ref name="libero.inline.full.content"/>
+        </oneOrMore>
+
+    </define>
+
+    <define name="libero.inline.full.content">
+
+        <choice>
+            <ref name="libero.inline.full.formatting"/>
+            <text/>
+        </choice>
+
+    </define>
+
+    <define name="libero.inline.limited">
+
+        <oneOrMore>
+            <ref name="libero.inline.limited.content"/>
+        </oneOrMore>
+
+    </define>
+
+    <define name="libero.inline.limited.content">
+
+        <choice>
+            <ref name="libero.inline.limited.formatting"/>
+            <text/>
+        </choice>
+
+    </define>
+
+    <define name="libero.inline.full.formatting">
+        <ref name="libero.inline.full.highlighting"/>
+    </define>
+
+    <define name="libero.inline.limited.formatting">
+        <ref name="libero.inline.limited.highlighting"/>
+    </define>
+
+    <define name="libero.inline.full.highlighting">
+        <empty/>
+    </define>
+
+    <define name="libero.inline.limited.highlighting">
+        <empty/>
+    </define>
+
+</grammar>

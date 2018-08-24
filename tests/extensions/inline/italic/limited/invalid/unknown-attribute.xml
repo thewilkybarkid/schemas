@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng"?>
+<?expected-error line="5" message="Invalid attribute key for element italic"?>
+
+<italic xmlns="http://libero.pub" xmlns:test="http://libero.pub/test" test:key="value">
+    foo
+</italic>
