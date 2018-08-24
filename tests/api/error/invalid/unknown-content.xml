@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../api/error.rng"?>
+<?expected-error line="9" message="Element problem has extra content: content"?>
+
+<problem xmlns="urn:ietf:rfc:7807">
+
+    <status>404</status>
+    <title>Not Found</title>
+    <content/>
+
+</problem>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="urn:ietf:rfc:7807" xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <start>
+
+        <element name="problem">
+
+            <zeroOrMore>
+                <ref name="foreign-attribute"/>
+            </zeroOrMore>
+
+            <interleave>
+
+                <element name="status">
+
+                    <zeroOrMore>
+                        <ref name="foreign-attribute"/>
+                    </zeroOrMore>
+
+                    <data type="integer">
+                        <param name="minInclusive">400</param>
+                        <param name="maxInclusive">599</param>
+                    </data>
+
+                </element>
+
+                <element name="title">
+
+                    <zeroOrMore>
+                        <ref name="foreign-attribute"/>
+                    </zeroOrMore>
+
+                    <data type="string"/>
+
+                </element>
+
+                <optional>
+
+                    <element name="type">
+
+                        <zeroOrMore>
+                            <ref name="foreign-attribute"/>
+                        </zeroOrMore>
+
+                        <data type="anyURI"/>
+
+                    </element>
+
+                </optional>
+
+                <optional>
+
+                    <element name="detail">
+
+                        <zeroOrMore>
+                            <ref name="foreign-attribute"/>
+                        </zeroOrMore>
+
+                        <data type="string"/>
+
+                    </element>
+
+                </optional>
+
+                <optional>
+
+                    <element name="instance">
+
+                        <zeroOrMore>
+                            <ref name="foreign-attribute"/>
+                        </zeroOrMore>
+
+                        <data type="anyURI"/>
+
+                    </element>
+
+                </optional>
+
+                <zeroOrMore>
+                    <ref name="foreign-element"/>
+                </zeroOrMore>
+
+            </interleave>
+
+        </element>
+
+    </start>
+
+    <define name="foreign-attribute">
+
+        <attribute>
+
+            <anyName>
+                <except>
+                    <nsName ns=""/>
+                    <nsName ns="urn:ietf:rfc:7807"/>
+                </except>
+            </anyName>
+
+        </attribute>
+
+    </define>
+
+    <define name="foreign-element">
+
+        <element>
+
+            <anyName>
+                <except>
+                    <nsName ns=""/>
+                    <nsName ns="urn:ietf:rfc:7807"/>
+                </except>
+            </anyName>
+
+            <zeroOrMore>
+                <ref name="foreign-attribute"/>
+            </zeroOrMore>
+
+            <zeroOrMore>
+
+                <interleave>
+
+                    <text/>
+                    <ref name="foreign-element"/>
+
+                </interleave>
+
+            </zeroOrMore>
+
+        </element>
+
+    </define>
+
+</grammar>

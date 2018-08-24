@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../api/error.rng"?>
+
+<problem xmlns="urn:ietf:rfc:7807">
+
+    <instance>http://example.com</instance>
+    <detail>Foo</detail>
+    <title>Internal Server Error</title>
+    <type>about:blank</type>
+    <status>500</status>
+
+</problem>

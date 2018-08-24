@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../api/error.rng"?>
+
+<problem xmlns="urn:ietf:rfc:7807" xmlns:test="http://libero.pub/test">
+
+    <status test:key="value">500</status>
+    <title test:key="value">Internal Server Error</title>
+    <type test:key="value">about:blank</type>
+    <detail test:key="value">Foo</detail>
+    <instance test:key="value">http://example.com</instance>
+
+</problem>

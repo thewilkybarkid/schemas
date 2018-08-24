@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../api/error.rng"?>
+<?expected-error line="8" message="Error validating datatype integer"?>
+<?expected-error line="8" message="Element status failed to validate content"?>
+
+<problem xmlns="urn:ietf:rfc:7807">
+
+    <status>399</status>
+    <title>Invalid</title>
+
+</problem>

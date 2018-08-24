@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../api/error.rng"?>
+
+<problem xmlns="urn:ietf:rfc:7807" xmlns:test="http://libero.pub/test" test:key="value">
+
+    <status>404</status>
+    <title>Not Found</title>
+
+</problem>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../api/error.rng"?>
+<?expected-error line="5" message="Invalid attribute key for element problem"?>
+
+<problem xmlns="urn:ietf:rfc:7807" key="value">
+
+    <status>404</status>
+    <title>Not Found</title>
+
+</problem>

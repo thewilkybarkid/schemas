@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../api/error.rng"?>
+<?expected-error line="7" message="Expecting an element title, got nothing"?>
+<?expected-error line="7" message="Invalid sequence in interleave"?>
+<?expected-error line="7" message="Element problem failed to validate content"?>
+
+<problem xmlns="urn:ietf:rfc:7807">
+
+    <status>404</status>
+
+</problem>
