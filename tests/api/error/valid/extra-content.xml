@@ -4,7 +4,7 @@
 <problem xmlns="urn:ietf:rfc:7807" xmlns:test="http://libero.pub/test">
 
     <status>404</status>
-    <test:foo test:bar="baz">qux <test:quxx test:quuz="corge"/></test:foo>
+    <test:foo test:bar="baz">qux <test:quux test:quuz="corge">garply</test:quux></test:foo>
     <title>Not Found</title>
 
 </problem>

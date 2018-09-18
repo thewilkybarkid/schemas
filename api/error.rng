@@ -122,8 +122,10 @@
 
                 <interleave>
 
-                    <text/>
-                    <ref name="foreign-element"/>
+                    <choice>
+                        <text/>
+                        <ref name="foreign-element"/>
+                    </choice>
 
                 </interleave>
 
