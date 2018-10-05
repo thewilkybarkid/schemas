@@ -9,7 +9,7 @@
     <arg name="extensions" value="php"/>
     <arg value="s"/>
 
-    <rule ref="PSR2"/>
+    <rule ref="Libero"/>
 
     <file>tests/</file>
 
