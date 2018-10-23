@@ -4,53 +4,44 @@ declare(strict_types=1);
 
 namespace tests\Libero\Schemas;
 
-use DOMDocument;
 use FluentDOM;
+use FluentDOM\DOM\Document;
 use FluentDOM\DOM\ProcessingInstruction;
-use LibXMLError;
+use Libero\XmlValidator\Failure;
+use Libero\XmlValidator\RelaxNgValidator;
+use Libero\XmlValidator\ValidationFailed;
+use Libero\XmlValidator\XmlValidator;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use function Functional\map;
-use function libxml_clear_errors;
-use function libxml_get_errors;
 use function preg_match;
-use function print_r;
-use function trim;
 
 final class SchemaTest extends TestCase
 {
     /**
-     * @before
-     */
-    public function clearLibXmlErrors() : void
-    {
-        libxml_clear_errors();
-    }
-
-    /**
      * @test
      * @dataProvider validFileProvider
      */
-    public function valid_documents_pass(DOMDocument $document, string $schema) : void
+    public function valid_documents_pass(Document $document, XmlValidator $validator) : void
     {
-        $result = $document->relaxNGValidate($schema);
-        $errors = $this->getLibXmlErrors();
+        $this->expectNotToPerformAssertions();
 
-        $this->assertTrue($result, "Document is not valid:\n".print_r($errors, true));
+        $validator->validate($document);
     }
 
     /**
      * @test
      * @dataProvider invalidFileProvider
      */
-    public function invalid_documents_fail(DOMDocument $document, string $schema, array $expected) : void
+    public function invalid_documents_fail(Document $document, XmlValidator $validator, array $expected) : void
     {
-        $result = $document->relaxNGValidate($schema);
-        $errors = $this->getLibXmlErrors();
-
-        $this->assertFalse($result, 'Document is considered valid when it is not');
-        $this->assertSame($expected, $errors);
+        try {
+            $validator->validate($document);
+            $this->fail('Document is considered valid when it is not');
+        } catch (ValidationFailed $e) {
+            $this->assertEquals($expected, $e->getFailures());
+        }
     }
 
     public function validFileProvider() : iterable
@@ -73,21 +64,6 @@ final class SchemaTest extends TestCase
         return $this->extractSchemas($files);
     }
 
-    private function getLibXmlErrors() : array
-    {
-        $errors = map(
-            libxml_get_errors(),
-            function (LibXMLError $error) : array {
-                return [
-                    'line' => $error->line,
-                    'message' => trim($error->message),
-                ];
-            }
-        );
-
-        return $errors;
-    }
-
     private function extractSchemas(Finder $files) : iterable
     {
         foreach ($files as $file) {
@@ -96,9 +72,11 @@ final class SchemaTest extends TestCase
             $xmlModel = $dom('substring-before(substring-after(/processing-instruction("xml-model"), \'"\'), \'"\')');
             $schema = "{$file->getPath()}/{$xmlModel}";
 
+            $validator = new RelaxNgValidator($schema);
+
             $expectedFailures = map(
                 $dom('/processing-instruction("expected-error")'),
-                function (ProcessingInstruction $instruction) use ($file) : array {
+                function (ProcessingInstruction $instruction) use ($file) : Failure {
                     $valid = preg_match('~line="([0-9]+)"\s+message="([^"]*?)"~', $instruction->nodeValue, $matches);
 
                     if (!$valid) {
@@ -108,14 +86,11 @@ final class SchemaTest extends TestCase
                         );
                     }
 
-                    return [
-                        'line' => (int) $matches[1],
-                        'message' => $matches[2],
-                    ];
+                    return new Failure($matches[2], (int) $matches[1]);
                 }
             );
 
-            yield $file->getRelativePathname() => [$dom, $schema, $expectedFailures];
+            yield $file->getRelativePathname() => [$dom, $validator, $expectedFailures];
         }
     }
 }
