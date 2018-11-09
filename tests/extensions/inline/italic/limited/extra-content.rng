@@ -13,7 +13,7 @@
     <define name="libero.inline.limited.content" combine="choice">
         
         <element name="content">
-            <text/>
+            <ref name="libero.inline.full"/>
         </element>
         
     </define>

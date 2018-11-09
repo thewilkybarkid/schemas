@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5445d859ed0cfcc4b4924c7be9d1a640",
+    "content-hash": "ec02a433d4826b4fe6d60943b2c19f47",
     "packages": [],
     "packages-dev": [
         {
@@ -230,16 +230,16 @@
         },
         {
             "name": "libero/xml-validator",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/libero/xml-validator.git",
-                "reference": "ec8eceb18ae1ba6202c176c6f7aae89e8e715d7c"
+                "reference": "a9e70e2019f3ba027f0daf77a260c3e9b72db54c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/libero/xml-validator/zipball/ec8eceb18ae1ba6202c176c6f7aae89e8e715d7c",
-                "reference": "ec8eceb18ae1ba6202c176c6f7aae89e8e715d7c",
+                "url": "https://api.github.com/repos/libero/xml-validator/zipball/a9e70e2019f3ba027f0daf77a260c3e9b72db54c",
+                "reference": "a9e70e2019f3ba027f0daf77a260c3e9b72db54c",
                 "shasum": ""
             },
             "require": {
@@ -248,10 +248,15 @@
                 "php": "^7.2"
             },
             "require-dev": {
+                "ext-xsl": "*",
                 "libero/coding-standard": "^0.2",
                 "phpstan/phpstan": "^0.10",
                 "phpstan/phpstan-phpunit": "^0.10",
-                "phpunit/phpunit": "^7.2"
+                "phpunit/phpunit": "^7.2",
+                "symfony/filesystem": "^4.0"
+            },
+            "suggest": {
+                "ext-xsl": "To use SchematronValidator"
             },
             "type": "library",
             "extra": {
@@ -269,7 +274,7 @@
                 "MIT"
             ],
             "description": "XML validator",
-            "time": "2018-10-19T12:52:16+00:00"
+            "time": "2018-11-08T09:27:18+00:00"
         },
         {
             "name": "lstrojny/functional-php",
@@ -1908,7 +1913,8 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-xsl": "*"
     },
     "platform-overrides": {
         "php": "7.2.0"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../custom-attribute.rng"?>
+<?xml-model href="../custom-attribute.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../custom-attribute.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <italic xmlns="http://libero.pub" xmlns:test="http://libero.pub/test" test:key="value">
-    foo <italic test:key="value">bar</italic>
+    foo
 </italic>

@@ -7,15 +7,22 @@ namespace tests\Libero\Schemas;
 use FluentDOM;
 use FluentDOM\DOM\Document;
 use FluentDOM\DOM\ProcessingInstruction;
+use Libero\XmlValidator\CompositeValidator;
 use Libero\XmlValidator\Failure;
 use Libero\XmlValidator\RelaxNgValidator;
+use Libero\XmlValidator\SchematronValidator;
 use Libero\XmlValidator\ValidationFailed;
 use Libero\XmlValidator\XmlValidator;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+use function array_reduce;
+use function count;
 use function Functional\map;
-use function preg_match;
+use function is_readable;
+use function preg_match_all;
+use const PREG_SET_ORDER;
 
 final class SchemaTest extends TestCase
 {
@@ -69,28 +76,82 @@ final class SchemaTest extends TestCase
         foreach ($files as $file) {
             $dom = FluentDOM::load($file->getContents());
 
-            $xmlModel = $dom('substring-before(substring-after(/processing-instruction("xml-model"), \'"\'), \'"\')');
-            $schema = "{$file->getPath()}/{$xmlModel}";
+            yield $file->getRelativePathname() => [
+                $dom,
+                $this->findValidator($dom, $file),
+                $this->findExpectedFailures($dom, $file),
+            ];
+        }
+    }
 
-            $validator = new RelaxNgValidator($schema);
-
-            $expectedFailures = map(
-                $dom('/processing-instruction("expected-error")'),
-                function (ProcessingInstruction $instruction) use ($file) : Failure {
-                    $valid = preg_match('~line="([0-9]+)"\s+message="([^"]*?)"~', $instruction->nodeValue, $matches);
-
-                    if (!$valid) {
+    private function findValidator(Document $dom, SplFileInfo $file) : XmlValidator
+    {
+        $validators = map(
+            $dom('/processing-instruction("xml-model")'),
+            function (ProcessingInstruction $instruction) use ($file) {
+                $parsed = $this->parseProcessingInstruction($instruction, $file);
+                $schema = "{$file->getPath()}/{$parsed['href']}";
+                if (!is_readable($schema)) {
+                    throw new LogicException("Failed to read schema {$schema} in {$file->getRelativePathname()}");
+                }
+                switch ($parsed['schematypens']) {
+                    case 'http://relaxng.org/ns/structure/1.0':
+                        return new RelaxNgValidator($schema);
+                    case 'http://purl.oclc.org/dsdl/schematron':
+                        return new SchematronValidator($schema);
+                    default:
                         throw new LogicException(
-                            'Invalid expected-error processing instruction in '.
-                            $file->getRelativePathname()
+                            "Unknown schematypens {$parsed['schematypens']} in {$file->getRelativePathname()}"
+                        );
+                }
+            }
+        );
+
+        return 1 === count($validators) ? $validators[0] : new CompositeValidator(...$validators);
+    }
+
+    private function findExpectedFailures(Document $dom, SplFileInfo $file) : array
+    {
+        return map(
+            $dom('/processing-instruction("expected-error")'),
+            function (ProcessingInstruction $instruction) use ($dom, $file) : Failure {
+                $parsed = $this->parseProcessingInstruction($instruction, $file);
+
+                if (isset($parsed['node'])) {
+                    $node = $dom->xpath()->evaluate($parsed['node'], null, true)->item(0);
+                    if (null === $node) {
+                        throw new LogicException(
+                            "Failed to match {$parsed['node']} in {$file->getRelativePathname()}"
                         );
                     }
-
-                    return new Failure($matches[2], (int) $matches[1]);
                 }
-            );
 
-            yield $file->getRelativePathname() => [$dom, $validator, $expectedFailures];
+                return new Failure($parsed['message'], (int) $parsed['line'], $node ?? null);
+            }
+        );
+    }
+
+    private function parseProcessingInstruction(ProcessingInstruction $instruction, SplFileInfo $file) : array
+    {
+        $valid = preg_match_all(
+            '~([a-z]+)="([^"]*?)"~',
+            $instruction->nodeValue,
+            $matches,
+            PREG_SET_ORDER
+        );
+
+        if (!$valid) {
+            throw new LogicException("Failed to parse processing instruction in {$file->getRelativePathname()}");
         }
+
+        return array_reduce(
+            $matches,
+            function (array $carry, array $parts) {
+                $carry[$parts[1]] = $parts[2];
+
+                return $carry;
+            },
+            []
+        );
     }
 }

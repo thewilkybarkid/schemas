@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../basic.rng"?>
-<?expected-error line="5" message="Element italic has extra content: text"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?expected-error line="6" message="Element italic has extra content: text"?>
 
 <italic xmlns="http://libero.pub" xmlns:test="http://libero.pub/test">
     foo <test:inline>bar</test:inline>

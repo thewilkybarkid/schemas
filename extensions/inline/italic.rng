@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
-    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+
+    <sch:ns prefix="libero" uri="http://libero.pub"/>
 
     <define name="libero.inline.full.highlighting" combine="choice">
         <ref name="libero.italic.full"/>
@@ -44,5 +47,21 @@
     <define name="libero.italic.limited.content">
         <ref name="libero.inline.limited"/>
     </define>
+
+    <sch:pattern>
+        <sch:rule context="libero:italic">
+            <sch:assert test="not(ancestor::libero:italic)">
+                Italics must not be nested
+            </sch:assert>
+        </sch:rule>
+    </sch:pattern>
+
+    <sch:pattern>
+        <sch:rule context="libero:italic">
+            <sch:assert test="* or normalize-space()">
+                Italics must not be empty
+            </sch:assert>
+        </sch:rule>
+    </sch:pattern>
 
 </grammar>
