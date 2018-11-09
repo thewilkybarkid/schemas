@@ -14,11 +14,12 @@ jobs:
     include:
 
         - stage: Test
+          name: Tests
           script:
           - vendor/bin/phpunit
 
         - stage: Code Quality
-          env: CODING_STANDARDS
+          name: Coding standards
           script:
               - vendor/bin/phpcs -p
 
