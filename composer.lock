@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec02a433d4826b4fe6d60943b2c19f47",
+    "content-hash": "e22b68ac0f4469d59a59b659831718d3",
     "packages": [],
     "packages-dev": [
         {
@@ -185,16 +185,16 @@
         },
         {
             "name": "libero/coding-standard",
-            "version": "v0.2.0",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/libero/php-coding-standard.git",
-                "reference": "80dd646b73b8e4708b17ed81cb21c546b6bf769d"
+                "reference": "0bba2855baed3a9d9e3a8bcb009ef477a60ed122"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/libero/php-coding-standard/zipball/80dd646b73b8e4708b17ed81cb21c546b6bf769d",
-                "reference": "80dd646b73b8e4708b17ed81cb21c546b6bf769d",
+                "url": "https://api.github.com/repos/libero/php-coding-standard/zipball/0bba2855baed3a9d9e3a8bcb009ef477a60ed122",
+                "reference": "0bba2855baed3a9d9e3a8bcb009ef477a60ed122",
                 "shasum": ""
             },
             "require": {
@@ -207,6 +207,8 @@
                 "ext-mbstring": "*",
                 "ext-tokenizer": "*",
                 "lstrojny/functional-php": "^1.8",
+                "phpstan/phpstan": "^0.10",
+                "phpstan/phpstan-phpunit": "^0.10",
                 "phpunit/phpunit": "^7.3",
                 "symfony/finder": "^4.1"
             },
@@ -226,7 +228,7 @@
                 "MIT"
             ],
             "description": "Libero PHP coding standard",
-            "time": "2018-10-02T13:20:38+00:00"
+            "time": "2018-11-15T08:04:49+00:00"
         },
         {
             "name": "libero/xml-validator",
@@ -1678,21 +1680,21 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "4.8.4",
+            "version": "4.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "bc8a02f25e03eb5481c4976cc615621cdd75aef9"
+                "reference": "af0c0c99e84106525484ef25f15144b9831522bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/bc8a02f25e03eb5481c4976cc615621cdd75aef9",
-                "reference": "bc8a02f25e03eb5481c4976cc615621cdd75aef9",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/af0c0c99e84106525484ef25f15144b9831522bb",
+                "reference": "af0c0c99e84106525484ef25f15144b9831522bb",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1",
-                "squizlabs/php_codesniffer": "^3.3.0"
+                "squizlabs/php_codesniffer": "^3.3.1"
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "1.0.0",
@@ -1713,7 +1715,7 @@
                 "MIT"
             ],
             "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
-            "time": "2018-10-01T20:16:49+00:00"
+            "time": "2018-11-03T21:28:29+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
