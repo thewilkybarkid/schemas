@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?expected-error line="13" message="Found differing IDs: 1234 and 1235" node="/libero:item/libero:front[2]"?>
+
+<libero:item xmlns:libero="http://libero.pub">
+
+    <libero:front xml:lang="en">
+        <libero:id>1234</libero:id>
+        <libero:title>Title</libero:title>
+    </libero:front>
+
+    <libero:front xml:lang="es">
+        <libero:id>1235</libero:id>
+        <libero:title>Título</libero:title>
+    </libero:front>
+
+</libero:item>

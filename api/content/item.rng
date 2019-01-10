@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+
+    <sch:ns prefix="libero" uri="http://libero.pub"/>
+
+    <include href="parts/front.rng"/>
+
+    <define name="libero.content.item">
+
+        <element name="item">
+            <ref name="libero.content.item.attributes"/>
+            <oneOrMore>
+                <ref name="libero.content.item.content"/>
+            </oneOrMore>
+        </element>
+
+    </define>
+
+    <define name="libero.content.item.attributes">
+        <empty/>
+    </define>
+
+    <define name="libero.content.item.content">
+        <ref name="libero.content.item.front"/>
+    </define>
+
+    <sch:pattern>
+        <sch:rule context="/libero:item/*">
+            <sch:let name="lang" value="@xml:lang"/>
+            <sch:let name="localname" value="local-name()"/>
+            <sch:let name="namespaceuri" value="namespace-uri()"/>
+            <sch:assert test="not(preceding-sibling::*[local-name() = $localname and namespace-uri() = $namespaceuri and @xml:lang = $lang])">
+                Duplicate part {<sch:value-of select="$namespaceuri"/>}<sch:value-of select="$localname"/>@xml:lang='<sch:value-of select="$lang"/>'
+            </sch:assert>
+        </sch:rule>
+    </sch:pattern>
+
+    <sch:pattern>
+        <sch:rule context="/libero:item/libero:front">
+            <sch:let name="id" value="libero:id/text()"/>
+            <sch:assert test="not(preceding-sibling::libero:front[libero:id != $id])">
+                Found differing IDs: <sch:value-of select="preceding-sibling::libero:front[1]/libero:id/text()"/> and <sch:value-of select="$id"/>
+            </sch:assert>
+        </sch:rule>
+    </sch:pattern>
+
+</grammar>

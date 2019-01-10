@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?expected-error line="13" message="Duplicate part {http://libero.pub}front@xml:lang='en'" node="/libero:item/libero:front[2]"?>
+
+<libero:item xmlns:libero="http://libero.pub">
+
+    <libero:front xml:lang="en">
+        <libero:id>1234</libero:id>
+        <libero:title>Title</libero:title>
+    </libero:front>
+
+    <libero:front xml:lang="en">
+        <libero:id>1234</libero:id>
+        <libero:title>Title</libero:title>
+    </libero:front>
+
+</libero:item>

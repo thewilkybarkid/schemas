@@ -5,5 +5,6 @@
 
     <include href="attributes/lang.rng"/>
     <include href="inline.rng"/>
+    <include href="types.rng"/>
 
 </grammar>

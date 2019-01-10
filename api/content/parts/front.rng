@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+
+    <sch:ns prefix="libero" uri="http://libero.pub"/>
+
+    <define name="libero.content.item.front">
+
+        <element name="front">
+            <ref name="libero.content.item.front.attributes"/>
+            <ref name="libero.content.item.front.content"/>
+        </element>
+
+    </define>
+
+    <define name="libero.content.item.front.attributes">
+        <ref name="libero.core.attributes.lang"/>
+    </define>
+
+    <define name="libero.content.item.front.content">
+
+        <interleave>
+            <ref name="libero.content.item.front.content.id"/>
+            <ref name="libero.content.item.front.content.title"/>
+        </interleave>
+
+    </define>
+
+    <define name="libero.content.item.front.content.id">
+
+        <element name="id">
+            <ref name="libero.content.item.front.content.id.attributes"/>
+            <ref name="libero.content.item.front.content.id.content"/>
+        </element>
+
+    </define>
+
+    <define name="libero.content.item.front.content.id.attributes">
+        <empty/>
+    </define>
+
+    <define name="libero.content.item.front.content.id.content">
+        <ref name="libero.core.types.id"/>
+    </define>
+
+    <define name="libero.content.item.front.content.title">
+
+        <element name="title">
+            <ref name="libero.content.item.front.content.title.attributes"/>
+            <ref name="libero.content.item.front.content.title.content"/>
+        </element>
+
+    </define>
+
+    <define name="libero.content.item.front.content.title.attributes">
+        <empty/>
+    </define>
+
+    <define name="libero.content.item.front.content.title.content">
+        <ref name="libero.inline.limited"/>
+    </define>
+
+    <sch:pattern>
+        <sch:rule context="libero:title">
+            <sch:assert test="* or normalize-space()">
+                Title must not be empty
+            </sch:assert>
+        </sch:rule>
+    </sch:pattern>
+
+</grammar>

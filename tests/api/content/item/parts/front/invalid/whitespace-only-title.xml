@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?expected-error line="9" message="Title must not be empty" node="/libero:front/libero:title"?>
+
+<libero:front xmlns:libero="http://libero.pub" xml:lang="en">
+
+    <libero:id>some-id</libero:id>
+    <libero:title>
+        
+    </libero:title>
+
+</libero:front>

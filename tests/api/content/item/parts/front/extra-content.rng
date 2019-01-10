@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub/test" xmlns="http://relaxng.org/ns/structure/1.0">
+
+    <include href="../../../../../test-case.rng"/>
+
+    <include href="../../../../../../api/content/parts/front.rng"/>
+
+    <start>
+        <ref name="libero.content.item.front"/>
+    </start>
+
+    <define name="libero.content.item.front.content" combine="interleave">
+
+        <element name="content">
+            <empty/>
+        </element>
+
+    </define>
+
+</grammar>

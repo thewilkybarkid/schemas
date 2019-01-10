@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schema.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../schema.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<test:root xmlns:test="http://libero.pub/test">
+    abcdefghijklmnopqrstuvwxyz%1AABCDEFGHIJKLMNOPQRSTUVWXYZ%A101234567890%9F-%9F._~!$&amp;'()*+,;=:@
+</test:root>

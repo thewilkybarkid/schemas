@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0">
+
+    <define name="libero.content.item-ref">
+
+        <element name="item-ref">
+            <ref name="libero.content.item-ref.attributes"/>
+            <ref name="libero.content.item-ref.content"/>
+        </element>
+
+    </define>
+
+    <define name="libero.content.item-ref.attributes">
+        <ref name="libero.content.item-ref.attributes.service"/>
+        <ref name="libero.content.item-ref.attributes.id"/>
+    </define>
+
+    <define name="libero.content.item-ref.content">
+        <empty/>
+    </define>
+
+    <define name="libero.content.item-ref.attributes.service">
+
+        <attribute name="service">
+            <ref name="libero.content.item-ref.attributes.service.content"/>
+        </attribute>
+
+    </define>
+
+    <define name="libero.content.item-ref.attributes.service.content">
+        <ref name="libero.core.types.id"/>
+    </define>
+
+    <define name="libero.content.item-ref.attributes.id">
+
+        <attribute name="id">
+            <ref name="libero.content.item-ref.attributes.id.content"/>
+        </attribute>
+
+    </define>
+
+    <define name="libero.content.item-ref.attributes.id.content">
+        <ref name="libero.core.types.id"/>
+    </define>
+
+</grammar>

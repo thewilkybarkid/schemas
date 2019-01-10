@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+
+    <sch:ns prefix="libero" uri="http://libero.pub"/>
+
+    <include href="item-ref.rng"/>
+
+    <define name="libero.content.item-list">
+
+        <element name="item-list">
+            <ref name="libero.content.item-list.attributes"/>
+            <ref name="libero.content.item-list.content"/>
+        </element>
+
+    </define>
+
+    <define name="libero.content.item-list.attributes">
+        <empty/>
+    </define>
+
+    <define name="libero.content.item-list.content">
+
+        <zeroOrMore>
+            <ref name="libero.content.item-ref"/>
+        </zeroOrMore>
+
+    </define>
+
+    <sch:pattern>
+        <sch:rule context="/libero:item-list/libero:item-ref">
+            <sch:let name="id" value="@id"/>
+            <sch:let name="service" value="@service"/>
+            <sch:assert test="not(preceding-sibling::libero:item-ref[@id = $id and @service = $service])">
+                Duplicate {<sch:value-of select="namespace-uri()"/>}<sch:value-of select="local-name()"/>@id='<sch:value-of select="$id"/>'@service='<sch:value-of select="$service"/>'
+            </sch:assert>
+        </sch:rule>
+    </sch:pattern>
+
+</grammar>

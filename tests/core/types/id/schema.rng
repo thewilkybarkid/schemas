@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub/test" xmlns="http://relaxng.org/ns/structure/1.0">
+
+    <include href="../../../test-case.rng">
+
+        <define name="libero.tests.root.content">
+            <ref name="libero.core.types.id"/>
+        </define>
+
+    </include>
+
+    <start>
+        <ref name="libero.tests.root"/>
+    </start>
+
+</grammar>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?expected-error line="9" message="Error validating datatype string"?>
+<?expected-error line="9" message="Element id failed to validate content"?>
+
+<front xmlns="http://libero.pub" xml:lang="en">
+
+    <id/>
+    <title>Some Title</title>
+
+</front>

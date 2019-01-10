@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<item xmlns="http://libero.pub">
+
+    <front xml:lang="en">
+        <id>1234</id>
+        <title>Title</title>
+    </front>
+
+    <front xml:lang="es">
+        <id>1234</id>
+        <title>Título</title>
+    </front>
+
+</item>

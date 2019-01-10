@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?expected-error line="8" message="Element front failed to validate attributes"?>
+
+<front xmlns="http://libero.pub">
+
+    <id>some-id</id>
+    <title>Some Title</title>
+
+</front>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="libero.core.types.id">
+
+        <data type="string">
+            <param name="pattern">\s*([A-Za-z0-9\-._~!$&amp;'()*+,;=:@]|%[A-F0-9]{2})+\s*</param>
+        </data>
+
+    </define>
+
+</grammar>

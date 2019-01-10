@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../basic.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../basic.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?expected-error line="6" message="Expecting element item, got not-item"?>
+
+<not-item xmlns="http://libero.pub">
+    
+    <front xml:lang="en">
+        <id>1234</id>
+        <title>Title</title>
+    </front>
+    
+</not-item>
