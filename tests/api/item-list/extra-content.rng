@@ -2,15 +2,15 @@
 
 <grammar ns="http://libero.pub/test" xmlns="http://relaxng.org/ns/structure/1.0">
 
-    <include href="../../../../../test-case.rng"/>
+    <include href="../../test-case.rng"/>
 
-    <include href="../../../../../../api/content/parts/front.rng"/>
+    <include href="../../../api/item-list.rng"/>
 
     <start>
-        <ref name="libero.content.item.front"/>
+        <ref name="libero.content.item-list"/>
     </start>
 
-    <define name="libero.content.item.front.content" combine="interleave">
+    <define name="libero.content.item-list.content" combine="interleave">
 
         <element name="content">
             <empty/>

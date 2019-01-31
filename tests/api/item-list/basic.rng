@@ -2,9 +2,9 @@
 
 <grammar ns="http://libero.pub/test" xmlns="http://relaxng.org/ns/structure/1.0">
 
-    <include href="../../../test-case.rng"/>
+    <include href="../../test-case.rng"/>
 
-    <include href="../../../../api/content/item-list.rng"/>
+    <include href="../../../api/item-list.rng"/>
 
     <start>
         <ref name="libero.content.item-list"/>
